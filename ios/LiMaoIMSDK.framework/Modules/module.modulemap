@@ -1,0 +1,6 @@
+framework module LiMaoIMSDK {
+  umbrella header "LiMaoIMSDK.h"
+
+  export *
+  module * { export * }
+}
