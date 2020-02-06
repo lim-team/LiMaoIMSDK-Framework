@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
   s.ios.libraries = 'c++'
   # s.xcconfig = {"LIBRARY_SEARCH_PATHS"=>"/work/projects/limao/LiMaoIMSDK/LiMaoIMSDK/Classes/Vendor/arm/lib"}
   # s.source = { :git => "https://github.com/lim-team/LiMaoIMSDK-Framework.git",:tag => "#{s.version}" }
-  s.source = { :git => "https://github.com/lim-team/LiMaoIMSDK-Framework.git",:branch => "master" }
+  s.source = { :git => "https://github.com/lim-team/LiMaoIMSDK-Framework.git",:tag => "#{s.version}" }
 
   s.ios.deployment_target    = '8.0'
   s.resource_bundles = {
