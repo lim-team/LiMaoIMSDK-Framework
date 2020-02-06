@@ -13,6 +13,9 @@ Pod::Spec.new do |s|
   s.source = { :http => "http://49.235.59.182:8888/ios.zip" }
 
   s.ios.deployment_target    = '8.0'
+  s.resource_bundles = {
+    'LiMaoIMSDK' => ['ios/Assets/*.png','ios/Assets/Migrations/*']
+  }
   # s.ios.preserve_paths       = 'ios/LiMaoIMSDK.framework'
   # s.ios.public_header_files  = 'ios/LiMaoIMSDK.framework/Versions/A/Headers/*.h'
   # s.ios.resource             = 'ios/LiMaoIMSDK.framework/Versions/A/Resources/**/*'
