@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'LiMaoIMSDK'
-  s.version = '0.1.0'
+  s.version = '0.1.1'
   s.summary = '狸猫IM是一款简单，高效，支持完全私有化的即时通讯.'
   s.license = {"type"=>"MIT", "file"=>"LICENSE"}
   s.authors = {"tangtaoit"=>"412145540@qq.com"}
@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.libraries = ["opencore-amrnb", "opencore-amrwb", "vo-amrwbenc"]
   s.ios.libraries = 'c++'
   # s.xcconfig = {"LIBRARY_SEARCH_PATHS"=>"/work/projects/limao/LiMaoIMSDK/LiMaoIMSDK/Classes/Vendor/arm/lib"}
-  s.source = { :http => "http://49.235.59.182:8888/ios.zip" }
+  s.source = { :git => "https://github.com/lim-team/LiMaoIMSDK-Framework.git",:tag => "#{s.version}" }
 
   s.ios.deployment_target    = '8.0'
   s.resource_bundles = {
