@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.frameworks = ["UIKit", "MapKit"]
   s.libraries = ["opencore-amrnb", "opencore-amrwb", "vo-amrwbenc"]
   # s.xcconfig = {"LIBRARY_SEARCH_PATHS"=>"/work/projects/limao/LiMaoIMSDK/LiMaoIMSDK/Classes/Vendor/arm/lib"}
-  s.source = { :git => "https://github.com/lim-team/LiMaoIMSDK-Framework.git", :tag => "#{s.version}" }
+  s.source = { :http => "https://github.com/lim-team/LiMaoIMSDK-Framework/archive/0.1.0.zip" }
 
   s.ios.deployment_target    = '8.0'
   s.ios.preserve_paths       = 'ios/LiMaoIMSDK.framework'
