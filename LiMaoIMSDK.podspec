@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
   s.name = 'LiMaoIMSDK'
   s.version = '0.1.1'
   s.summary = '狸猫IM是一款简单，高效，支持完全私有化的即时通讯.'
-  s.license = {"type"=>"MIT", "file"=>"LICENSE"}
+  s.license = {"type"=>"MIT"}
   s.authors = {"tangtaoit"=>"412145540@qq.com"}
   s.homepage = 'https://github.com/lim-team/LiMaoIMSDK-Framework'
   s.description = '狸猫IM是一款简单，高效，支持完全私有化的即时通讯，提供群聊，点对点通讯解决方案'
