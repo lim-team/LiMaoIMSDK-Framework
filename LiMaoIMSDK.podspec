@@ -12,8 +12,5 @@ Pod::Spec.new do |s|
   s.source = { :http => "https://github.com/lim-team/LiMaoIMSDK-Framework/archive/0.1.0.zip" }
 
   s.ios.deployment_target    = '8.0'
-  s.ios.preserve_paths       = 'ios/LiMaoIMSDK.framework'
-  s.ios.public_header_files  = 'ios/LiMaoIMSDK.framework/Versions/A/Headers/*.h'
-  s.ios.resource             = 'ios/LiMaoIMSDK.framework/Versions/A/Resources/**/*'
   s.ios.vendored_frameworks  = 'ios/LiMaoIMSDK.framework'
 end
