@@ -14,7 +14,6 @@ Pod::Spec.new do |s|
   s.source = { :git => "https://github.com/lim-team/LiMaoIMSDK-Framework.git",:tag => "#{s.version}" }
 
   s.ios.deployment_target    = '8.0'
-  spec.resource = "Resources/LiMaoIMSDK.bundle"
   s.resource_bundles = {
     'LiMaoIMSDK' => ['ios/Assets/*.png','ios/Assets/Migrations/*']
   }
