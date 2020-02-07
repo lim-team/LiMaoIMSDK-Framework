@@ -14,6 +14,7 @@ Pod::Spec.new do |s|
   s.source = { :git => "https://github.com/lim-team/LiMaoIMSDK-Framework.git",:tag => "#{s.version}" }
 
   s.ios.deployment_target    = '8.0'
+  spec.resource = "Resources/LiMaoIMSDK.bundle"
   s.resource_bundles = {
     'LiMaoIMSDK' => ['ios/Assets/*.png','ios/Assets/Migrations/*']
   }
@@ -22,7 +23,7 @@ Pod::Spec.new do |s|
   # s.ios.resource             = 'ios/LiMaoIMSDK.framework/Versions/A/Resources/**/*'
   s.ios.vendored_frameworks  = 'ios/LiMaoIMSDK.framework'
   s.vendored_libraries = 'ios/*.{a}'
-  s.pod_target_xcconfig = { 'VALID_ARCHS[sdk=iphonesimulator*]' => '' }
+  # s.pod_target_xcconfig = { 'VALID_ARCHS[sdk=iphonesimulator*]' => '' }
   s.dependency 'CocoaAsyncSocket', '~> 7.6.2'
   s.dependency 'FMDB', '~>2.7.2'
 end

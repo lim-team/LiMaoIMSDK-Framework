@@ -1,4 +1,7 @@
 # LiMaoIMSDK-Framework
 
+pod trunk register 412145540@qq.com 'tangtao' --description='狸猫IM' --verbose
 
-1111
+pod spec lint --verbose
+
+pod trunk push LiMaoIMSDK.podspec
