@@ -12,8 +12,9 @@ Pod::Spec.new do |s|
   # s.xcconfig = {"LIBRARY_SEARCH_PATHS"=>"/work/projects/limao/LiMaoIMSDK/LiMaoIMSDK/Classes/Vendor/arm/lib"}
   # s.source = { :git => "https://github.com/lim-team/LiMaoIMSDK-Framework.git",:tag => "#{s.version}" }
   s.source = { :git => "https://github.com/lim-team/LiMaoIMSDK-Framework.git",:tag => "#{s.version}" }
-
+  s.requires_arc = true
   s.ios.deployment_target    = '8.0'
+  s.platform     = :ios, "8.0"
   # s.resource_bundles = {
   #   'LiMaoIMSDK' => ['ios/Assets/*.png','ios/Assets/Migrations/*']
   # }
