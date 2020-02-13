@@ -6,6 +6,7 @@
 // 图片消息content
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "LIMMediaMessageContent.h"
 NS_ASSUME_NONNULL_BEGIN
 

@@ -111,6 +111,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /**
+ 转发消息
+
+ @param content 消息正文
+ @param channel 频道
+ @return <#return value description#>
+ */
+-(LIMMessage*) forwardMessage:(LIMMessageContent*)content channel:(LIMChannel*)channel;
+
+/**
  删除消息
 
  @param message 消息对象

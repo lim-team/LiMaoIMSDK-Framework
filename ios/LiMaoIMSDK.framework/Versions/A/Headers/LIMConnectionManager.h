@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 #import "ILIMConnectionManager.h"
 #import "LIMPacket.h"
+#import "LIMConnectInfo.h"
 NS_ASSUME_NONNULL_BEGIN
 
 
@@ -20,16 +21,9 @@ typedef enum : NSUInteger {
 } LIMConnectStatus;
 
 
-@interface LIMConnectInfo : NSObject
 
-@property(nonatomic,copy) NSString *uid;
-@property(nonatomic,copy) NSString *token;
-@property(nonatomic,copy) NSString *name;
-@property(nonatomic,copy) NSString *avatar;
 
-@end
 
-typedef LIMConnectInfo*_Nonnull(^LIMConnectInfoCallback)(void);
 
 @protocol LIMConnectionManagerDelegate <NSObject>
 
@@ -61,13 +55,6 @@ typedef LIMConnectInfo*_Nonnull(^LIMConnectInfoCallback)(void);
 -(void) connect;
 
 
-
-/**
- 设置连接信息回调block
-
- @param callback 连接信息回调
- */
--(void) setConnectInfoCallback:(LIMConnectInfoCallback)callback;
 
 /**
  断开连接
@@ -106,12 +93,6 @@ typedef LIMConnectInfo*_Nonnull(^LIMConnectInfoCallback)(void);
 -(void) sendPing;
 
 
-/**
- 当前连接信息
-
- @return <#return value description#>
- */
--(LIMConnectInfo*) currentConnectInfo;
 @end
 
 NS_ASSUME_NONNULL_END

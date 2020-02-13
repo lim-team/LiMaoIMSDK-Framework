@@ -10,6 +10,7 @@
 #import "LIMMessage.h"
 #import "LIMTaskProto.h"
 #import "LIMTaskManager.h"
+#import <CoreGraphics/CGBase.h>
 NS_ASSUME_NONNULL_BEGIN
 
 typedef enum : NSUInteger {

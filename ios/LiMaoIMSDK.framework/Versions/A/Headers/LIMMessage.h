@@ -69,6 +69,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign) LIMMessageStatus status;
 
 
+/**
+ 是否是发送消息
+
+ @return <#return value description#>
+ */
+- (BOOL)isSend;
+
 // 本地扩展数据
 @property(nonatomic,copy) NSMutableDictionary *extra;
 

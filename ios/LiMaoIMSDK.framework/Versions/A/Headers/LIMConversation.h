@@ -47,6 +47,40 @@ typedef enum : NSUInteger {
 
 @end
 
+@interface LIMReminderManager : NSObject
+
+/**
+ 提醒集合
+ */
+@property(nonatomic,strong) NSMutableArray *reminders;
+
+/**
+ 追加提醒
+
+ @param reminder <#reminder description#>
+ */
+-(void) appendReminder:(LIMReminder*)reminder;
+
+
+/**
+ 移除指定的提醒项
+
+ @param type <#type description#>
+ */
+-(void) removeReminder:(LIMReminderType)type;
+
+/**
+ 合并提醒
+
+ @param source 合并源
+ @return <#return value description#>
+ */
+- (NSArray<LIMReminder*>*) mergeReminders:(NSArray<LIMReminder*>*)source;
+
+
+@end
+
+
 @interface LIMConversation : NSObject
 /**
  频道
@@ -98,9 +132,9 @@ typedef enum : NSUInteger {
 
 
 /**
- 提醒集合
+ 提醒管理
  */
-@property(nonatomic,strong) NSMutableArray<LIMReminder*> *reminders;
+@property(nonatomic,strong) LIMReminderManager *reminderManager;
 
 
 /**

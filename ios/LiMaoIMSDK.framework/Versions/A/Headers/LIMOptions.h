@@ -6,8 +6,11 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "LIMConnectInfo.h"
 NS_ASSUME_NONNULL_BEGIN
+
+typedef LIMConnectInfo*_Nonnull(^LIMConnectInfoCallback)(void);
+
 
 @interface LIMOptions : NSObject
 
@@ -22,10 +25,29 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(nonatomic,assign) uint16_t port;
 
+
+/**
+ 连接信息回调
+ */
+@property(nonatomic,copy) LIMConnectInfoCallback connectInfoCallback;
+
+
+/**
+连接信息
+ */
+@property(nullable,nonatomic,strong) LIMConnectInfo *connectInfo;
 /**
  是否是debug模式
  */
 @property(nonatomic,assign) bool isDebug;
+
+
+/**
+ 是否有登录信息
+
+ @return <#return value description#>
+ */
+-(BOOL) hasLogin;
 
 /**
  心跳间隔 （ 单位秒）

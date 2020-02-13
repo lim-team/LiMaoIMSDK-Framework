@@ -16,20 +16,23 @@ NS_ASSUME_NONNULL_BEGIN
 @optional
 
 
-/**
- 最近会话被添加
 
- @param conversation 最近会话对象
+/**
+  最近会话被添加
+
+ @param conversation <#conversation description#>
+ @param left 会话剩余数量 UI层可以判断left == 0 的时候才刷新 避免频繁刷新UI导致卡顿
  */
-- (void)onConversationAdd:(LIMConversation*)conversation;
+- (void)onConversationAdd:(LIMConversation*)conversation left:(NSInteger)left;
 
 
 /**
  最近会话被更新
 
  @param conversation 最近会话对象
+ @param left 会话剩余数量 UI层可以判断left == 0 的时候才刷新 避免频繁刷新UI导致卡顿
  */
-- (void)onConversationUpdate:(LIMConversation*)conversation;
+- (void)onConversationUpdate:(LIMConversation*)conversation left:(NSInteger)left;
 
 /**
  最近会话未读数更新
@@ -102,11 +105,29 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /**
+  调用最近会话添加委托
+
+ @param conversation <#conversation description#>
+ @param left 剩余数量 （方便UI层left==0的时候刷新）
+ */
+- (void)callOnConversationAddDelegate:(LIMConversation*)conversation left:(NSInteger)left;
+
+
+/**
  调用最近会话更新委托
 
  @param conversation <#conversation description#>
  */
 - (void)callOnConversationUpdateDelegate:(LIMConversation*)conversation;
+
+
+/**
+  调用最近会话更新委托
+
+ @param conversation <#conversation description#>
+ @param left left 剩余数量 （方便UI层left==0的时候刷新）
+ */
+- (void)callOnConversationUpdateDelegate:(LIMConversation*)conversation left:(NSInteger)left;
 
 /**
  添加最近会话委托

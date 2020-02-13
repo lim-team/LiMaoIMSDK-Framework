@@ -63,7 +63,7 @@ create table message
   channel_id   VARCHAR(40)      not null default '',                             -- 频道ID
   channel_type smallint         not null default 0,                              -- 频道类型
   content_type integer          NOT NULL default 0,                              -- 消息正文类型
-  content      blob             not null default '',                             -- 消息正文
+  content      text             not null default '',                             -- 消息正文
   status       integer          not null default 0,                              -- 消息状态
   readed    smallint         not null default 0,                             --  消息是否已读 0.未读 1.已读
   voice_readed smallint         not null default 0,                             --  语音是否已读 0.未读 1.已读

@@ -64,10 +64,16 @@ typedef void (^LIMOfflineMessagePull)(int limit,uint32_t messageSeq,LIMOfflineMe
 // 狸猫SDK
 @interface LIMSDK : NSObject
 
-@property(nonatomic,strong) LIMOptions* options;
+
 
 + (LIMSDK *)shared;
 
+@property(nonatomic,strong) LIMOptions* options;
+
+/**
+ 连接信息串
+ */
+@property(nonatomic,copy) NSString *connectURL;
 
 /**
  连接管理者

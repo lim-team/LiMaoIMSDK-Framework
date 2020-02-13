@@ -8,7 +8,8 @@
 // 正文类型
 typedef enum : NSUInteger {
     LIM_TEXT = 1, // 文本消息
-    LIM_IMAGE, // 图片消息
+    LIM_IMAGE = 2, // 图片消息
+    LIM_GIF = 3, // gif表情
     LIM_VOICE = 4, // 语音消息
     LIM_CMD = 99, // 命令消息
     LIM_UNKNOWN = -1, // 未知消息
