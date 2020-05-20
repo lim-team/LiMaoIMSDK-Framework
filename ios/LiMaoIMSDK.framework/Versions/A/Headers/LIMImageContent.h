@@ -19,11 +19,27 @@ NS_ASSUME_NONNULL_BEGIN
 
 /*!
  初始化图片消息
- 
+
  @param image   原始图片
  @return        图片消息对象
  */
 + (instancetype)initWithImage:(UIImage *)image;
+
+
+
+/// 通过data初始化
+/// @param data 图片数据
+/// @param width 图片宽度
+/// @param height 图片高度
++ (instancetype)initWithData:(NSData *)data width:(CGFloat)width height:(CGFloat)height;
+
+
+/// 初始化
+/// @param data 原图data
+/// @param width 原图宽度
+/// @param height 原图高度
+/// @param thumbData 缩略图data （如果传了缩略图的data数据，sdk将不再生成缩略图数据）
++ (instancetype)initWithData:(NSData *)data width:(CGFloat)width height:(CGFloat)height thumbData:( nullable NSData*)thumbData;
 
 
 /*!

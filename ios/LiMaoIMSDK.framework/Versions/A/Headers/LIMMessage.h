@@ -11,6 +11,7 @@
 #import "LIMChannelInfo.h"
 #import "LIMConst.h"
 #import "LIMChannelMemberDB.h"
+#import "LIMTaskProto.h"
 NS_ASSUME_NONNULL_BEGIN
 @interface LIMMessageHeader : NSObject
 // 是否红点
@@ -69,6 +70,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign) LIMMessageStatus status;
 
 
+/// 消息关联的任务（例如：下载图片任务，上传图片任务等等）
+@property(nonatomic,weak,readonly) id<LIMTaskProto> task;
 /**
  是否是发送消息
 

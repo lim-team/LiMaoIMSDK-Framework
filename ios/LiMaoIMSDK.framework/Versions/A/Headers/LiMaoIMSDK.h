@@ -13,6 +13,7 @@
 #import "LIMChannel.h"
 #import "LIMChannelManager.h"
 #import "LIMMessageDB.h"
+#import "LIMChannelInfoDB.h"
 
 #import "LIMVoiceContent.h"
 #import "LIMMessageContent.h"
@@ -25,6 +26,7 @@
 #import "LIMFileUtil.h"
 #import "LIMConversation.h"
 #import "LIMCMDContent.h"
+#import "LIMMediaMessageContent.h"
 
 #import "LIMTaskProto.h"
 #import "LIMMessageFileDownloadTask.h"

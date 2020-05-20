@@ -41,7 +41,8 @@ static uint8_t maxPacketType = 8;
 
 typedef enum : uint8_t {
     ERROR,
-    SUCCESS = 1,
+    SUCCESS = 1, // 认证成功
+    AUTHFAIL = 2, // 认证失败（一般是token不正确）
 } LIMReason;
 
 // 频道类型

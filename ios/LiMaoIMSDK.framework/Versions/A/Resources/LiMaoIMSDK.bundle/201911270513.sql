@@ -33,7 +33,7 @@ CREATE TRIGGER channel_updated_at
 -- 频道成员表
 create table channel_member
 (
-  id            INTEGER      PRIMARY KEY,
+  id            INTEGER      PRIMARY KEY AUTOINCREMENT,
   channel_id    varchar(40)  NOT NULL default '',                             -- 频道ID
   channel_type  smallint     NOT NULL default 0,                              -- 频道类型
   member_uid    varchar(40)  NOT NULL default '',                             -- 成员UID

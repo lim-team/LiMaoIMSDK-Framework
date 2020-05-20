@@ -20,10 +20,10 @@ typedef enum : NSUInteger {
 } LIMMediaUploadState;
 
 typedef enum : NSUInteger {
-    LIMMediaUDownloadStateProcessing = 0,
-    LIMMediaUDownloadStateSuccess = 1,
-    LIMMediaUDownloadStateFail = 2,
-} LIMMediaUDownloadState;
+    LIMMediaDownloadStateProcessing = 0,
+    LIMMediaDownloadStateSuccess = 1,
+    LIMMediaDownloadStateFail = 2,
+} LIMMediaDownloadState;
 
 @interface LIMFileInfo : NSObject
 
@@ -118,7 +118,7 @@ typedef void(^LIMAudioPayerDidFinishBlock)(BOOL successFlag);
  @param message 消息对象
  @param callback 下载回调
  */
--(void) download:(LIMMessage*)message callback:(void(^ __nullable)(LIMMediaUDownloadState state,CGFloat progress,NSError * __nullable error))callback;
+-(void) download:(LIMMessage*)message callback:(void(^ __nullable)(LIMMediaDownloadState state,CGFloat progress,NSError * __nullable error))callback;
 
 /**
  获取上传进度

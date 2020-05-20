@@ -30,6 +30,10 @@ typedef NS_ENUM(NSUInteger, LIMMentionedType) {
  */
 @interface LIMMentionedInfo : NSObject
 
+
+///  初始化@提醒信息
+/// @param type <#type description#>
+- (instancetype)initWithMentionedType:(LIMMentionedType)type;
 /*!
  初始化@提醒信息
  

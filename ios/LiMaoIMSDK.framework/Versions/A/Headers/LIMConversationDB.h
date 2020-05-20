@@ -23,6 +23,11 @@ NS_ASSUME_NONNULL_BEGIN
 -(void) addOrUpdateConversation:(LIMConversation*)conversation;
 
 
+/// 添加最近会话信息
+/// @param conversation <#conversation description#>
+-(void) addConversation:(LIMConversation*)conversation;
+
+
 /**
  查询指定频道的最近会话
 
@@ -88,6 +93,16 @@ NS_ASSUME_NONNULL_BEGIN
  */
 -(void) clearConversationUnreadCount:(LIMChannel*)channel;
 
+
+/// 设置最近会话未读数
+/// @param channel 频道
+/// @param unread 未读数量
+-(void) setConversationUnreadCount:(LIMChannel*)channel unread:(NSInteger)unread;
+
+
+/// 删除指定频道的最近会话
+/// @param channel 频道对象
+-(void) deleteConversation:(LIMChannel*)channel;
 /**
  更新最近会话的标题和头像
 
@@ -111,6 +126,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /**
+ 移除某种类型的提醒
+
+ @param type <#type description#>
+ @param channel <#channel description#>
+ @return <#return value description#>
+ */
+-(LIMConversation*) removeReminder:(LIMReminderType)type channel:(LIMChannel*)channel;
+
+/**
 清除指定频道的所有提醒
 
  @param channel 频道
@@ -128,6 +152,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 -(LIMConversation*) clearReminder:(LIMChannel*)channel type:(NSInteger)type;
 
+
+/**
+ 获取所有会话未读数量
+ */
+-(NSInteger) getAllConversationUnreadCount;
+
 @end
 
 // 最近会话添加或修改结果
@@ -135,9 +165,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,assign) BOOL insert;
 
+@property(nonatomic,assign) BOOL modify; // 数据是否修改（添加或更新都为true）
+
 @property(nonatomic,strong) LIMConversation *conversation;
 
-+(instancetype) initWithInsert:(BOOL)insert conversation:(LIMConversation*)conversation;
++(instancetype) initWithInsert:(BOOL)insert modify:(BOOL)modify conversation:(LIMConversation*)conversation;
 @end
 
 NS_ASSUME_NONNULL_END

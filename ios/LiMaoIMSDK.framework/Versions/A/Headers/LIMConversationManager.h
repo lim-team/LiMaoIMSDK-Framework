@@ -15,8 +15,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @optional
 
-
-
 /**
   最近会话被添加
 
@@ -42,6 +40,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)onConversationUnreadCountUpdate:(LIMChannel*)channel unreadCount:(NSInteger)unreadCount;
 
+
+/// 最近会话被删除
+/// @param channel <#channel description#>
+-(void) onConversationDelete:(LIMChannel*)channel;
+
 @end
 
 @interface LIMConversationManager : NSObject
@@ -54,6 +57,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 -(LIMConversationAddOrUpdateResult*) addOrUpdateConversation:(LIMConversation*)conversation incUnreadCount:(NSInteger)incUnreadCount;
 
+-(LIMConversationAddOrUpdateResult*) addOrUpdateConversation:(LIMConversation*)cs;
+
+
+/// 添加最近会话信息
+/// @param conversation <#conversation description#>
+-(void) addConversation:(LIMConversation*)conversation;
 /**
  追加提醒
  
@@ -63,6 +72,14 @@ NS_ASSUME_NONNULL_BEGIN
  */
 -(LIMConversation*)  appendReminder:(LIMReminder*) reminder channel:(LIMChannel*)channel;
 
+
+/**
+ 移除某个类型的提醒
+
+ @param type 提醒类型
+ @param channel 所在频道
+ */
+-(void)  removeReminder:(LIMReminderType) type channel:(LIMChannel*)channel;
 
 /**
  获取频道里指定类型的提醒
@@ -88,6 +105,17 @@ NS_ASSUME_NONNULL_BEGIN
  */
 -(void) clearConversationUnreadCount:(LIMChannel*)channel;
 
+
+/// 设置未读数
+/// @param channel 频道
+/// @param unread 未读数量
+-(void) setConversationUnreadCount:(LIMChannel*)channel unread:(NSInteger)unread;
+
+
+/// 删除最近会话
+/// @param channel 频道
+-(void) deleteConversation:(LIMChannel*)channel;
+
 /**
  获取最近会话列表
  
@@ -95,6 +123,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 -(NSArray<LIMConversation*>*) getConversationList;
 
+
+/// 获取指定频道的最近会话信息
+/// @param channel <#channel description#>
+-(LIMConversation*) getConversation:(LIMChannel*)channel;
 
 /**
  调用最近会话添加委托
@@ -143,6 +175,11 @@ NS_ASSUME_NONNULL_BEGIN
  @param delegate <#delegate description#>
  */
 -(void)removeDelegate:(id<LIMConversationManagerDelegate>) delegate;
+
+/**
+ 获取所有会话未读数量
+ */
+-(NSInteger) getAllConversationUnreadCount;
 
 
 @end

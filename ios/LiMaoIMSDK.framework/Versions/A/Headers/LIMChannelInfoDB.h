@@ -7,6 +7,8 @@
 
 #import <Foundation/Foundation.h>
 #import "LIMChannelInfo.h"
+#import "LIMChannelInfoSearchResult.h"
+#import "LIMChannelMessageSearchResult.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LIMChannelInfoDB : NSObject
@@ -41,6 +43,32 @@ NS_ASSUME_NONNULL_BEGIN
  @return <#return value description#>
  */
 -(LIMChannelInfo*) queryChannelInfo:(LIMChannel*)channel;
+
+
+
+/// 获取跟我好友关系的频道数据
+/// @param keyword 关键字
+/// @param limit 数量限制
+-(NSArray<LIMChannelInfo*>*) queryChannelInfoWithFriend:(NSString*)keyword limit:(NSInteger)limit;
+
+
+/// 搜索频道信息
+/// @param keyword 频道关键字
+/// @param channelType 频道类型
+/// @param limit 数量限制
+-(NSArray<LIMChannelInfoSearchResult*>*) searchChannelInfoWithKeyword:(NSString*)keyword channelType:(uint8_t)channelType limit:(NSInteger)limit;
+
+
+/// 搜索频道内的消息
+/// @param keyword 搜索关键字
+/// @param limit 数量限制
+-(NSArray<LIMChannelMessageSearchResult*>*) searchChannelMessageWithKeyword:(NSString*)keyword  limit:(NSInteger)limit;
+
+/// 查询频道
+/// @param keyword 关键字
+/// @param channelType 频道类型
+/// @param limit 数量限制
+-(NSArray<LIMChannelInfo*>*) queryChannelInfoWithType:(NSString*)keyword channelType:(uint8_t)channelType limit:(NSInteger)limit;
 @end
 
 NS_ASSUME_NONNULL_END

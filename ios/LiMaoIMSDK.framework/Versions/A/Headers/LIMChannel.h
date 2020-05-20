@@ -16,8 +16,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign) uint8_t channelType;
 
 -(instancetype) initWith:(NSString*)channelId channelType:(uint8_t)channelType;
-
-
+// 转换为map
+-(NSDictionary*) toMap;
+// 从map初始化
++(LIMChannel*) fromMap:(NSDictionary*)dict;
 
 @end
 

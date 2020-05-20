@@ -110,6 +110,12 @@ NS_ASSUME_NONNULL_BEGIN
 -(LIMMessage*) sendMessage:(LIMMessage*)message;
 
 
+/// 发送消息
+/// @param message 消息对象
+/// @param addRetryQueue 是否添加到重试队列，如果是true，消息发送失败将会进行指定次数的重试
+-(LIMMessage*) sendMessage:(LIMMessage*)message addRetryQueue:(BOOL)addRetryQueue;
+
+
 /**
  转发消息
 

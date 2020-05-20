@@ -16,6 +16,7 @@
 #import "LIMChannelManager.h"
 #import "LIMMediaManager.h"
 #import "LIMMessageFileUploadTask.h"
+#import "LIMMessageFileDownloadTask.h"
 #import "LIMTaskManager.h"
 NS_ASSUME_NONNULL_BEGIN
 
@@ -172,6 +173,11 @@ typedef void (^LIMOfflineMessagePull)(int limit,uint32_t messageSeq,LIMOfflineMe
  @return <#return value description#>
  */
 -(LIMMessageFileUploadTask*) getMessageFileUploadTask:(LIMMessage*)message;
+
+
+/// 获取消息下载任务
+/// @param message <#message description#>
+-(LIMMessageFileDownloadTask*) getMessageDownloadTask:(LIMMessage*)message;
 
 @end
 

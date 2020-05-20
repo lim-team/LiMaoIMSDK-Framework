@@ -10,8 +10,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef enum : NSUInteger {
-    LIMChannelInfoFollowStrange,
-    LIMChannelInfoFollowFriend,
+    LIMChannelInfoFollowStrange = 0,
+    LIMChannelInfoFollowFriend = 1,
+     LIMChannelInfoFollowAll = 2,
 } LIMChannelInfoFollow;
 
 @interface LIMChannelInfo : NSObject
@@ -72,6 +73,13 @@ typedef enum : NSUInteger {
  */
 @property(nonatomic,assign) BOOL save;
 
+
+/// 是否全员禁言
+@property(nonatomic,assign) BOOL forbidden;
+
+
+/// 群聊邀请确认
+@property(nonatomic,assign) BOOL invite;
 
 /**
  频道版本号

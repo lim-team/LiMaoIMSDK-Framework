@@ -17,7 +17,6 @@ typedef enum : NSUInteger {
 
 @interface LIMChannelMember : NSObject
 
-@property(nonatomic,assign)  long _id;
 @property(nonatomic,copy)    NSString *channelId; // 频道ID
 @property(nonatomic,assign)  uint8_t channelType; // 频道类型
 @property(nonatomic,copy) NSString *memberAvatar; // 成员头像
@@ -66,6 +65,10 @@ typedef enum : NSUInteger {
 -(NSArray<LIMChannelMember*>*) getMembersWithChannel:(LIMChannel*)channel;
 
 
+/// 获取管理员和创建者列表
+/// @param channel 频道
+-(NSArray<LIMChannelMember*>*) getManagerAndCreator:(LIMChannel*)channel;
+
 /**
  获取频道内指定uid的成员列表
 
@@ -106,6 +109,11 @@ typedef enum : NSUInteger {
  */
 -(BOOL) isCreator:(LIMChannel*)channel memberUID:(NSString*)uid;
 
+
+/// 成员是否存在频道里
+/// @param channel 频道对象
+/// @param uid 成员uid
+-(BOOL) exist:(LIMChannel*)channel uid:(NSString*)uid;
 
 /**
  获取指定的成员信息

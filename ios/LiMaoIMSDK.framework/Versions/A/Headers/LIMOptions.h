@@ -59,6 +59,10 @@ typedef LIMConnectInfo*_Nonnull(^LIMConnectInfoCallback)(void);
  */
 @property(nonatomic,copy) NSString *dbDir;
 
+
+/// db前缀
+@property(nonatomic,copy) NSString *dbPrefix;
+
 // 消息文件根目录
 @property(nonatomic,copy) NSString *messageFileRootDir;
 
@@ -83,6 +87,10 @@ typedef LIMConnectInfo*_Nonnull(^LIMConnectInfoCallback)(void);
  离线消息每次拉取数量
  */
 @property(nonatomic,assign) NSInteger offlineMessageLimit;
+
+
+/// 发送图片的时候图片最大大小，大于这个大小将自动压缩
+@property(nonatomic,assign) long imageMaxBytes;
 
 @end
 

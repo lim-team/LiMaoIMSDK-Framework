@@ -50,10 +50,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 -(void) writeDataToLocalPath;
 
-/**
- 本地扩展数据
- */
-@property(nonatomic,strong) NSMutableDictionary *extra;
+
+// 从本地扩展数据里获取值
+-(nullable id) getExtra:(NSString*)key;
+
+// 设置值到本地扩展字段内
+-(void) setExtra:(id)value key:(NSString*)key;
 
 @end
 

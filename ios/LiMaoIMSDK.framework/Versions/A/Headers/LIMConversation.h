@@ -104,6 +104,10 @@ typedef enum : NSUInteger {
  */
 @property(nonatomic,assign) uint32_t lastClientSeq;
 
+
+/// 最后一条消息message_seq
+@property(nonatomic,assign) uint32_t lastMsgSeq;
+
 /**
  最后一条消息
  */
@@ -115,7 +119,7 @@ typedef enum : NSUInteger {
 @property(nonatomic,assign) NSInteger lastContentType;
 
 /**
- 最新一条消息时间
+ 最新一条消息时间 （10位时间戳到秒）
  */
 @property(nonatomic,assign) NSInteger lastMsgTimestamp;
 
@@ -141,6 +145,11 @@ typedef enum : NSUInteger {
  扩展数据
  */
 @property(nonatomic,strong) NSDictionary *extra;
+
+
+/// 数据版本
+@property(nonatomic,assign) NSInteger version;
+
 
 @end
 
