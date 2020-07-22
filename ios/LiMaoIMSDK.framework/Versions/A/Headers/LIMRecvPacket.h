@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign) uint64_t messageId;
 // 消息序列号 （用户唯一，有序递增）
 @property(nonatomic,assign) uint32_t messageSeq;
+// 客户端消息唯一编号（用于消息去重）
+@property(nonatomic,copy) NSString *clientMsgNo;
 // 服务器时间
 @property(nonatomic,assign) uint32_t timestamp;
 // 发送者UID

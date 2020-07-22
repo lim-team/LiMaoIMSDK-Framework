@@ -17,8 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
  保存消息
 
  @param messages 消息集合
+ @return 返回去重了的消息集合
  */
--(void) saveMessages:(NSArray<LIMMessage*>*)messages;
+-(NSArray<LIMMessage*>*) saveMessages:(NSArray<LIMMessage*>*)messages;
 
 
 /**
@@ -41,6 +42,11 @@ NS_ASSUME_NONNULL_BEGIN
  @return <#return value description#>
  */
 -(NSArray<LIMMessage*>*) getMessagesWithClientSeqs:(NSArray<NSNumber*>*)clientSeqs;
+
+
+/// 通过客户端消息编号获取消息列表
+/// @param clientMsgNos <#clientMsgNos description#>
+-(NSArray<LIMMessage*>*) getMessagesWithClientMsgNos:(NSArray*)clientMsgNos;
 /**
  获取指定clientSeq的消息
 
@@ -103,11 +109,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 -(void) updateMessageExtra:(NSDictionary*) extra clientSeq:(uint32_t)clientSeq;
 /**
- 将等待发送的消息状态更改为发送失败的状态
+ 将上传中的消息状态更改为发送失败的状态
  */
--(void) updateMessageWaitSendToFailStatus;
+-(void) updateMessageUploadingToFailStatus;
 
 
+/// 获取所有等待发送的消息
+-(NSArray<LIMMessage*>*) getMessagesWaitSend;
 /**
  更新消息状态
 
@@ -140,6 +148,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(void) clearMessages:(LIMChannel*)channel;
 
 
+/// 清除所有消息
+-(void) clearAllMessages;
 /**
  获取最后一条消息
 

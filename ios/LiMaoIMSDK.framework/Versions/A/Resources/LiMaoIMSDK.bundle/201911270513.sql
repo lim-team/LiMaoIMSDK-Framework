@@ -103,6 +103,8 @@ create table conversation
   updated_at         timeStamp        not null DEFAULT (datetime('now', 'localtime'))  -- 更新时间
 );
 
+CREATE UNIQUE INDEX IF NOT EXISTS idx_conversation ON conversation (channel_id, channel_type);
+
 -- +migrate StatementBegin
 CREATE TRIGGER conversation_updated_at
   AFTER UPDATE

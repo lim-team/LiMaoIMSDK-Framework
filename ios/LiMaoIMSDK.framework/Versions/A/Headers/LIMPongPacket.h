@@ -7,9 +7,10 @@
 
 #import <Foundation/Foundation.h>
 #import "LIMPacket.h"
+#import "LIMPacketBodyCoder.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LIMPongPacket : LIMPacket
+@interface LIMPongPacket : LIMPacket<LIMPacketBodyCoder>
 
 @end
 

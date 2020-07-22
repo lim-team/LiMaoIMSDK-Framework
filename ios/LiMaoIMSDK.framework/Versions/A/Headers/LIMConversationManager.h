@@ -45,6 +45,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param channel <#channel description#>
 -(void) onConversationDelete:(LIMChannel*)channel;
 
+
+/// 所有最近会话删除
+-(void) onConversationAllDelete;
+
 @end
 
 @interface LIMConversationManager : NSObject
@@ -63,6 +67,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// 添加最近会话信息
 /// @param conversation <#conversation description#>
 -(void) addConversation:(LIMConversation*)conversation;
+
+
+/// 恢复指定频道的会话
+/// @param channel <#channel description#>
+-(void) recoveryConversation:(LIMChannel*)channel;
+
 /**
  追加提醒
  
@@ -160,6 +170,10 @@ NS_ASSUME_NONNULL_BEGIN
  @param left left 剩余数量 （方便UI层left==0的时候刷新）
  */
 - (void)callOnConversationUpdateDelegate:(LIMConversation*)conversation left:(NSInteger)left;
+
+
+/// 调用删除所有最近会话委托
+- (void)callOnConversationAllDeleteDelegate;
 
 /**
  添加最近会话委托

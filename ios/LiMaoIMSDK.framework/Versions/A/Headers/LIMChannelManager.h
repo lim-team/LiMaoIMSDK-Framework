@@ -24,6 +24,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 -(void) channelInfoUpdate:(LIMChannelInfo*)channelInfo;
 
+
+/// 频道数据移除
+/// @param channel <#channel description#>
+-(void) channelInfoDelete:(LIMChannel*)channel;
+
 @end
 
 
@@ -54,9 +59,9 @@ typedef void  (^LIMChannelInfoBlock)(LIMChannelInfo*);
 
 
 /**
- 添加频道信息
+删除频道信息
  */
--(void) addChannelInfo:(LIMChannelInfo*) channelInfo;
+-(void) deleteChannelInfo:(LIMChannel*) channelInfo;
 
 
 /**
@@ -75,6 +80,14 @@ typedef void  (^LIMChannelInfoBlock)(LIMChannelInfo*);
 -(void) addOrUpdateChannelInfo:(LIMChannelInfo*) channelInfo;
 
 
+/// 更新频道信息
+/// @param channelInfo <#channelInfo description#>
+-(void) updateChannelInfo:(LIMChannelInfo*) channelInfo;
+
+
+/// 添加频道信息
+/// @param channelInfo <#channelInfo description#>
+-(void) addChannelInfo:(LIMChannelInfo*) channelInfo;
 /**
  更新频道设置
 

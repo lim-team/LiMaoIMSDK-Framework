@@ -11,6 +11,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LIMDataWrite : NSObject
 
+
+/// 初始化（大端模式）
++(instancetype) initLittleEndian;
+
 -(void) writeUint8:(uint8_t)v;
 
 -(void) writeUint16:(uint16_t)v;
@@ -19,7 +23,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(void) writeUint64:(uint64_t)v;
 
--(void) writeString:(NSString*)v;
+
+/// 写可变字符串 （前2位为字符串长度）
+/// @param v <#v description#>
+-(void) writeVariableString:(NSString*)v;
 
 -(void) writeData:(NSData*) data;
 
@@ -31,6 +38,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(instancetype) initWithData:(NSData*) data;
 
+-(instancetype) initWithData:(NSData*) data littleEndian:(BOOL)littleEndian;
+
 -(uint8_t) readUint8;
 
 -(uint16_t) readUint16;
@@ -41,6 +50,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(int64_t) readint64;
 
+
+/// 读取指定长度的data
+/// @param len <#len description#>
+-(NSData*) readData:(int)len;
+
 -(NSString*) readString;
 
 -(uint32_t) readLenth;
@@ -50,7 +64,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(int) lenthLength;
 -(NSData*) remainingData;
 
++(void) numberHNMemcpy:(void*)dest src:(const void *)src count:(unsigned int)count;
+
 @end
 
-void numberHNMemcpy(void *dest, const void *src, unsigned int count);
 NS_ASSUME_NONNULL_END

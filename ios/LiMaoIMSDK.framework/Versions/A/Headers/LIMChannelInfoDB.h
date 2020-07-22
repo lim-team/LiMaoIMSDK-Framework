@@ -36,6 +36,12 @@ NS_ASSUME_NONNULL_BEGIN
  @param channelInfo <#channelInfo description#>
  */
 -(void) updateChannelInfo:(LIMChannelInfo*)channelInfo;
+
+
+/// 删除频道信息
+/// @param channel <#channel description#>
+-(void) deleteChannelInfo:(LIMChannel*)channel;
+
 /**
  获取频道信息
 
@@ -44,6 +50,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 -(LIMChannelInfo*) queryChannelInfo:(LIMChannel*)channel;
 
+
+/// 通过状态查询频道信息
+/// @param status 0.正常 2.黑明单
+-(NSArray<LIMChannelInfo*>*) queryChannelInfosWithStatus:(NSInteger)status;
 
 
 /// 获取跟我好友关系的频道数据

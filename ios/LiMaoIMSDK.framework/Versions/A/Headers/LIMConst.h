@@ -12,7 +12,7 @@ typedef enum : NSUInteger {
     LIM_GIF = 3, // gif表情
     LIM_VOICE = 4, // 语音消息
     LIM_CMD = 99, // 命令消息
-    LIM_UNKNOWN = -1, // 未知消息
+    LIM_UNKNOWN = 0, // 未知消息
 } LIMContentType;
 
 // 消息状态
@@ -20,6 +20,7 @@ typedef enum : NSUInteger {
     LIM_MESSAGE_WAITSEND, // 等待发送
     LIM_MESSAGE_SUCCESS, // 发送成功
     LIM_MESSAGE_ONLYSAVE, // 仅仅保存消息（不做重发处理）
+    LIM_MESSAGE_UPLOADING, // 上传中
     LIM_MESSAGE_FAIL, // 发送失败
 } LIMMessageStatus;
 
@@ -37,7 +38,6 @@ typedef enum : uint8_t {
     LIM_DISCONNECT = 9 // 断开连接
 } LIMPacketType;
 
-static uint8_t maxPacketType = 8;
 
 typedef enum : uint8_t {
     ERROR,
@@ -51,4 +51,9 @@ typedef enum : uint8_t {
     LIM_GROUP = 2 // 群组
 } LIMChannelType;
 
+// 协议类型
+typedef enum : NSUInteger {
+    LIM_PROTO_LIMAO,
+    LIM_PROTO_MOS
+} LIMProto;
 

@@ -129,6 +129,11 @@ typedef NS_ENUM(NSUInteger, LIMMentionedType) {
  */
 - (NSString *)conversationDigest;
 
+/**
+ 扩展字段
+ */
+@property(nonatomic,strong) NSMutableDictionary *extra;
+
 
 @end
 

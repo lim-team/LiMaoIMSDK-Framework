@@ -55,15 +55,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 -(void) onMessageCleared:(LIMChannel*)channel;
 
-/**
- 消息状态发送改变
 
- @param messageStatusModel 消息状态model
- @param left 剩余数量 可当left为0时再刷新UI
- */
--(void) onMessageStatusChange:(LIMMessageStatusModel *)messageStatusModel left:(NSInteger)left;
-
-
+/// 清除所有消息
+-(void) onMessageAllCleared;
 
 
 
@@ -90,6 +84,8 @@ NS_ASSUME_NONNULL_BEGIN
  @return <#return value description#>
  */
 -(LIMMessage*) saveMessage:(LIMMessageContent*)content channel:(LIMChannel*)channel fromUid:( NSString* __nullable)fromUid;
+
+-(LIMMessage*) saveMessage:(LIMMessageContent*)content channel:(LIMChannel*)channel fromUid:(NSString* __nullable)fromUid  status:(LIMMessageStatus)status;
 
 
 /**
@@ -139,6 +135,10 @@ NS_ASSUME_NONNULL_BEGIN
  @param channel 频道
  */
 -(void) clearMessages:(LIMChannel*)channel;
+
+
+/// 清除所有消息
+-(void) clearAllMessages;
 /**
  处理发送消息回执
 
@@ -217,6 +217,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 // 调用消息更新委托
 - (void)callMessageUpdateDelegate:(LIMMessage*)message;
+
+
+
 
 @end
 

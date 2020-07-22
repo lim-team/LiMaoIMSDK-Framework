@@ -29,11 +29,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 // 客户端序列号 (客户端提供，服务端原样返回)
 @property(nonatomic,assign) uint32_t clientSeq;
+/// 客户端消息唯一编号(相同clientMsgNo被认为是重复消息)
+@property(nonatomic,copy) NSString *clientMsgNo;
 // 消息ID（全局唯一）
 @property(nonatomic,assign) uint64_t messageId;
 // 消息序列号（用户唯一，有序）
 @property(nonatomic,assign)  uint32_t messageSeq;
-// 消息时间（服务器时间）
+// 消息时间（服务器时间,单位秒）
 @property(nonatomic,assign) NSInteger timestamp;
 // 本地消息创建时间
 @property(nonatomic,assign) NSInteger localTimestamp;

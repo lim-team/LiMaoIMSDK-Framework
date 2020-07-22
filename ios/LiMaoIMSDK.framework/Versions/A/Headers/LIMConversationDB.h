@@ -28,6 +28,11 @@ NS_ASSUME_NONNULL_BEGIN
 -(void) addConversation:(LIMConversation*)conversation;
 
 
+/// 恢复指定会话
+/// @param channel <#channel description#>
+/// @return 如果存在会话的会话则返回，不存在则返回nil
+-(LIMConversation*) recoveryConversation:(LIMChannel*)channel;
+
 /**
  查询指定频道的最近会话
 
@@ -36,6 +41,11 @@ NS_ASSUME_NONNULL_BEGIN
  @return <#return value description#>
  */
 -(LIMConversation*) getConversationWithChannel:(LIMChannel*)channel db:(FMDatabase*)db;
+
+/// 查询指定频道的最近会话（包含is_deleted=1的频道）
+/// @param channel 指定频道
+/// @param db <#db description#>
+-(LIMConversation*) getConversationWithChannelInAll:(LIMChannel*)channel db:(FMDatabase*)db;
 
 /**
  查询频道类的最近会话数据
@@ -94,6 +104,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(void) clearConversationUnreadCount:(LIMChannel*)channel;
 
 
+
 /// 设置最近会话未读数
 /// @param channel 频道
 /// @param unread 未读数量
@@ -103,6 +114,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 删除指定频道的最近会话
 /// @param channel 频道对象
 -(void) deleteConversation:(LIMChannel*)channel;
+
+/// 删除所有最近会话
+-(void) deleteAllConversation;
 /**
  更新最近会话的标题和头像
 

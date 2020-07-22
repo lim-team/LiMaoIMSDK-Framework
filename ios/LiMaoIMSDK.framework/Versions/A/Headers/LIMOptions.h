@@ -7,7 +7,10 @@
 
 #import <Foundation/Foundation.h>
 #import "LIMConnectInfo.h"
+#import "LIMConst.h"
 NS_ASSUME_NONNULL_BEGIN
+
+
 
 typedef LIMConnectInfo*_Nonnull(^LIMConnectInfoCallback)(void);
 
@@ -91,6 +94,14 @@ typedef LIMConnectInfo*_Nonnull(^LIMConnectInfoCallback)(void);
 
 /// 发送图片的时候图片最大大小，大于这个大小将自动压缩
 @property(nonatomic,assign) long imageMaxBytes;
+
+
+/// SDK使用消息协议版本（默认使用最新的协议，如果使用旧协议需要手动设置值）
+@property(nonatomic,assign) uint8_t protoVersion;
+
+
+/// 协议类型
+@property(nonatomic,assign) LIMProto proto;
 
 @end
 

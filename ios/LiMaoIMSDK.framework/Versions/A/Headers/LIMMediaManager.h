@@ -11,6 +11,7 @@
 #import "LIMTaskProto.h"
 #import "LIMTaskManager.h"
 #import <CoreGraphics/CGBase.h>
+#import "LIMMessageFileDownloadTask.h"
 NS_ASSUME_NONNULL_BEGIN
 
 typedef enum : NSUInteger {
@@ -109,7 +110,7 @@ typedef void(^LIMAudioPayerDidFinishBlock)(BOOL successFlag);
 
  @param message <#message description#>
  */
--(void) download:(LIMMessage*)message;
+-(LIMMessageFileDownloadTask*) download:(LIMMessage*)message;
 
 
 /**
@@ -118,24 +119,24 @@ typedef void(^LIMAudioPayerDidFinishBlock)(BOOL successFlag);
  @param message 消息对象
  @param callback 下载回调
  */
--(void) download:(LIMMessage*)message callback:(void(^ __nullable)(LIMMediaDownloadState state,CGFloat progress,NSError * __nullable error))callback;
+-(LIMMessageFileDownloadTask*) download:(LIMMessage*)message callback:(void(^ __nullable)(LIMMediaDownloadState state,CGFloat progress,NSError * __nullable error))callback;
 
-/**
- 获取上传进度
-
- @param message 消息
- @return <#return value description#>
- */
--(CGFloat) getUploadProgress:(LIMMessage*)message;
-
-
-/**
- 获取下载进度
-
- @param message 消息
- @return <#return value description#>
- */
--(CGFloat) getDowloadProgress:(LIMMessage*)message;
+///**
+// 获取上传进度
+//
+// @param message 消息
+// @return <#return value description#>
+// */
+//-(CGFloat) getUploadProgress:(LIMMessage*)message;
+//
+//
+///**
+// 获取下载进度
+//
+// @param message 消息
+// @return <#return value description#>
+// */
+//-(CGFloat) getDowloadProgress:(LIMMessage*)message;
 
 
 

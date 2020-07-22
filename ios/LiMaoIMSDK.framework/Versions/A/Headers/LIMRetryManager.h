@@ -48,9 +48,9 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  移除重试项
 
- @param clientSeq <#clientSeq description#>
+ @param key key
  */
--(void) removeRetryItem:(uint32_t) clientSeq;
+-(void) removeRetryItem:(NSString*) key;
 
 @end
 

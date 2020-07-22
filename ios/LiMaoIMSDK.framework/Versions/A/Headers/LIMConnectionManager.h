@@ -6,7 +6,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ILIMConnectionManager.h"
 #import "LIMPacket.h"
 #import "LIMConnectInfo.h"
 NS_ASSUME_NONNULL_BEGIN
@@ -49,6 +48,9 @@ typedef enum : NSUInteger {
 
 @property(nonatomic,assign,readonly) LIMConnectStatus connectStatus;
 
+
+///  获取连接地址
+@property(nonatomic,copy) void(^getConnectAddr)(void(^complete)(NSString * __nullable addr));
 /**
  *  连接狸猫服务器
  */
@@ -61,6 +63,10 @@ typedef enum : NSUInteger {
  @param force 是否强制断开 如果force设置为true 将不再自动重连
  */
 -(void) disconnect:(BOOL) force;
+
+
+/// 登出，将强制断开，并清除登录信息
+-(void) logout;
 
 
 /**

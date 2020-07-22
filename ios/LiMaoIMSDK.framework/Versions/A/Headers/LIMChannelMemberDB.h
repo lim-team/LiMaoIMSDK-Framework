@@ -47,6 +47,10 @@ typedef enum : NSUInteger {
 -(void) addOrUpdateMembers:(NSArray<LIMChannelMember*>*)members;
 
 
+/// 删除频道成员
+/// @param channel <#channel description#>
+-(void) deleteMembers:(LIMChannel*)channel;
+
 /**
  获取频道的成员最新同步key
 

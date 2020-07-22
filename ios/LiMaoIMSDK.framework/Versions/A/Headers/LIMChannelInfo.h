@@ -10,8 +10,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef enum : NSUInteger {
-    LIMChannelInfoFollowStrange = 0,
-    LIMChannelInfoFollowFriend = 1,
+    LIMChannelInfoFollowStrange = 0, // 未关注
+    LIMChannelInfoFollowFriend = 1, // 已关注
      LIMChannelInfoFollowAll = 2,
 } LIMChannelInfoFollow;
 
@@ -31,6 +31,15 @@ typedef enum : NSUInteger {
  */
 @property(nonatomic,copy) NSString *name;
 
+/**
+ 频道备注
+ */
+@property(nonatomic,copy) NSString *remark;
+
+
+/// 展示的名字（如果remark为空则显示name，如果remark有值则显示remark）
+@property(nonatomic,copy) NSString *displayName;
+
 
 /**
 频道公告
@@ -44,10 +53,7 @@ typedef enum : NSUInteger {
 @property(nonatomic,copy) NSString *logo;
 
 
-/**
- 频道备注
- */
-@property(nonatomic,copy) NSString *remark;
+
 
 
 /**
@@ -86,10 +92,14 @@ typedef enum : NSUInteger {
  */
 @property(nonatomic,assign) long long version;
 
+
+/// 频道状态 0.正常  2.黑名单
+@property(nonatomic,assign) NSInteger status;
+
 /**
  扩展字段
  */
-@property(nonatomic,strong) NSDictionary *extra;
+@property(nonatomic,strong) NSMutableDictionary *extra;
 
 @end
 

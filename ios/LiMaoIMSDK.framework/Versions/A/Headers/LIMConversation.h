@@ -113,6 +113,9 @@ typedef enum : NSUInteger {
  */
 @property(nonatomic,strong) LIMMessage *lastMessage;
 
+
+/// 重新加载最后一条消息（重新从数据库里获取）
+-(void) reloadLastMessage;
 /**
  最后一条消息的正文类型
  */
@@ -149,6 +152,9 @@ typedef enum : NSUInteger {
 
 /// 数据版本
 @property(nonatomic,assign) NSInteger version;
+
+// 是否已删除
+@property(nonatomic,assign) NSInteger isDeleted;
 
 
 @end
