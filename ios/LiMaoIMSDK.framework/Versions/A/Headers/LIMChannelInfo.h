@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "LIMChannel.h"
+#import "LIMConst.h"
 NS_ASSUME_NONNULL_BEGIN
 
 typedef enum : NSUInteger {
@@ -14,6 +15,9 @@ typedef enum : NSUInteger {
     LIMChannelInfoFollowFriend = 1, // 已关注
      LIMChannelInfoFollowAll = 2,
 } LIMChannelInfoFollow;
+
+// 扩展字段的key
+typedef NSString *LIMChannelExtraKey NS_STRING_ENUM;
 
 @interface LIMChannelInfo : NSObject
 
@@ -96,11 +100,33 @@ typedef enum : NSUInteger {
 /// 频道状态 0.正常  2.黑名单
 @property(nonatomic,assign) NSInteger status;
 
+
+/// 是否在线
+@property(nonatomic,assign) BOOL online;
+
+
+/// 频道类别
+@property(nonatomic,copy) NSString *category;
+
+
+/// 最后一次离线时间
+@property(nonatomic,assign) NSTimeInterval lastOffline;
 /**
  扩展字段
  */
-@property(nonatomic,strong) NSMutableDictionary *extra;
+@property(nonatomic,strong) NSMutableDictionary<LIMChannelExtraKey,id> *extra;
 
+/// 获取扩展字段内的值
+/// @param key <#key description#>
+-(id) extraValueForKey:(LIMChannelExtraKey)key;
+
+-(id) extraValueForKey:(LIMChannelExtraKey)key defaultValue:(id _Nullable)value;
+
+-(void) setExtraValue:(id)value forKey:(LIMChannelExtraKey)key;
+
+-(BOOL) settingForKey:(LIMChannelExtraKey)key defaultValue:(BOOL)on;
+
+-(void) setSettingValue:(BOOL)on forKey:(LIMChannelExtraKey)key;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -9,7 +9,17 @@
 #import "LIMMessage.h"
 #import "LIMConversation.h"
 #import "LIMConversationDB.h"
+#import "LIMSyncConversationModel.h"
 NS_ASSUME_NONNULL_BEGIN
+
+typedef void(^LIMSyncConversationCallback)(LIMSyncConversationWrapModel* __nullable model,NSError * __nullable error);
+
+typedef void(^LIMSyncConversationAck)(uint64_t cmdVersion,void(^ _Nullable complete)(NSError * _Nullable error));
+
+// 同步会话返回 timestamp：最新会话的时间戳 lastMsgSeqs：客户端所有会话的最后一条消息序列号 格式： channelID:channelType:last_msg_seq|channelID:channelType:last_msg_seq
+typedef void (^LIMSyncConversationProvider)(long long version,NSString *lastMsgSeqs,LIMSyncConversationCallback callback);
+
+
 
 @protocol LIMConversationManagerDelegate <NSObject>
 
@@ -52,6 +62,17 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface LIMConversationManager : NSObject
+
+
+/// 同步最近会话
+@property(nonatomic,copy,readonly) LIMSyncConversationProvider syncConversationProvider;
+@property(nonatomic,copy,readonly) LIMSyncConversationAck syncConversationAck;
+
+
+/// 设置同步会话提供者
+/// @param syncConversationProvider <#syncConversationProvider description#>
+/// @param syncConversationAck <#syncConversationAck description#>
+-(void) setSyncConversationProviderAndAck:(LIMSyncConversationProvider) syncConversationProvider ack:(LIMSyncConversationAck)syncConversationAck;
 
 /**
  添加或更新最近会话
@@ -195,6 +216,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 -(NSInteger) getAllConversationUnreadCount;
 
+
+/// 处理同步下来的最近会话
+/// @param model 会话同步对象
+-(void) handleSyncConversation:(LIMSyncConversationWrapModel*)model;
 
 @end
 

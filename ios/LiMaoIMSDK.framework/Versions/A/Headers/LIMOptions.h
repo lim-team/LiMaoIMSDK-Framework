@@ -11,6 +11,11 @@
 NS_ASSUME_NONNULL_BEGIN
 
 
+typedef enum : NSUInteger {
+    LIMModeWrite, // 写扩散模式
+    LIMModeRead, // 读扩散模式
+} LIMMode;
+
 
 typedef LIMConnectInfo*_Nonnull(^LIMConnectInfoCallback)(void);
 
@@ -29,6 +34,8 @@ typedef LIMConnectInfo*_Nonnull(^LIMConnectInfoCallback)(void);
 @property(nonatomic,assign) uint16_t port;
 
 
+/// IM模式
+@property(nonatomic,assign) LIMMode mode;
 /**
  连接信息回调
  */
@@ -100,8 +107,14 @@ typedef LIMConnectInfo*_Nonnull(^LIMConnectInfoCallback)(void);
 @property(nonatomic,assign) uint8_t protoVersion;
 
 
+
+/// 同步频道消息每次大小
+@property(nonatomic,assign) NSInteger syncChannelMessageLimit;
+
 /// 协议类型
 @property(nonatomic,assign) LIMProto proto;
+
+@property(nonatomic,assign) BOOL mosConvertOn; // 是否开启mos的content转换（临时参数）
 
 @end
 

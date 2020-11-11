@@ -18,6 +18,7 @@
 #import "LIMMessageFileUploadTask.h"
 #import "LIMMessageFileDownloadTask.h"
 #import "LIMTaskManager.h"
+#import "LIMCMDManager.h"
 NS_ASSUME_NONNULL_BEGIN
 
 
@@ -124,6 +125,9 @@ typedef void (^LIMOfflineMessagePull)(int limit,uint32_t messageSeq,LIMOfflineMe
 
 
 
+/// cmd管理者
+@property(nonatomic,strong) LIMCMDManager *cmdManager;
+
 
 /**
  是否是debug模式
@@ -133,7 +137,16 @@ typedef void (^LIMOfflineMessagePull)(int limit,uint32_t messageSeq,LIMOfflineMe
 -(BOOL) isDebug;
 
 
+
+/// 注册消息正文
+/// @param cls 正文的class （需要继承LIMMessageContent）
 -(void) registerMessageContent:(Class)cls;
+
+
+/// 注册消息正文（指定正文类型）
+/// @param cls 正文的class （需要继承LIMMessageContent）
+/// @param contentType 正文类型
+-(void) registerMessageContent:(Class)cls contentType:(NSInteger)contentType;
 
 
 /**
@@ -154,8 +167,12 @@ typedef void (^LIMOfflineMessagePull)(int limit,uint32_t messageSeq,LIMOfflineMe
 -(BOOL) isSystemMessage:(NSInteger)contentType;
 
 
+// 离线消息拉取（普通模式）
 @property(nonatomic,copy,readonly) LIMOfflineMessagePull offlineMessagePull;
 @property(nonatomic,copy,readonly) LIMOfflineMessageAck offlineMessageAck;
+
+// 离线会话拉取（万人群模式）
+//@property(nonatomic,copy,readonly) LIMOfflineMessagePull offlineMessagePull;
 
 /**
  离线消息提供者

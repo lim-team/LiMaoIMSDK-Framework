@@ -16,6 +16,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign) uint8_t channelType;
 
 -(instancetype) initWith:(NSString*)channelId channelType:(uint8_t)channelType;
+
++(instancetype) channelID:(NSString*)channelId channelType:(uint8_t)channelType;
+// 群频道
++(instancetype) groupWithChannelID:(NSString*)channelID;
+// 个人频道
++(instancetype) personWithChannelID:(NSString*)channelID;
+
 // 转换为map
 -(NSDictionary*) toMap;
 // 从map初始化

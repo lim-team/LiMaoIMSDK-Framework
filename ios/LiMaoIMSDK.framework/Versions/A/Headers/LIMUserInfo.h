@@ -9,10 +9,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LIMUserInfo : NSObject<NSCoding>
+@interface LIMUserInfo : NSObject
 
--(instancetype) initWithUid:(NSString*)uid name:(NSString*)name avatar:(NSString*)avatar;
+-(instancetype) initWithUid:(NSString*)uid name:(NSString*__nullable)name avatar:(NSString* __nullable)avatar;
 
+-(instancetype) initWithUid:(NSString*)uid name:(NSString*)name;
 /*!
  用户ID
  */

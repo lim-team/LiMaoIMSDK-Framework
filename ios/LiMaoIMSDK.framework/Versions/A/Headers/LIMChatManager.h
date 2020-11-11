@@ -12,6 +12,7 @@
 #import "LIMRecvPacket.h"
 #import "LIMConversation.h"
 #import "LIMMessageStatusModel.h"
+#import "LIMSyncChannelMessageModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 /**
@@ -63,9 +64,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+// 同步频道消息
+typedef void(^LIMSyncChannelMessageCallback)(LIMSyncChannelMessageModel* __nullable syncChannelMessageModel,NSError * __nullable error);
+typedef void (^LIMSyncChannelMessageProvider)(LIMChannel *channel,uint32_t minMessageSeq,uint32_t maxMessageSeq,NSInteger limit,bool reverse,LIMSyncChannelMessageCallback callback);
+
 @interface LIMChatManager : NSObject
 
 
+/// 同步频道消息提供者（由第三方设置）
+@property(nonatomic,copy) LIMSyncChannelMessageProvider syncChannelMessageProvider;
 /**
  保存消息 (都为自己所发消息)
 
@@ -165,14 +172,19 @@ NS_ASSUME_NONNULL_BEGIN
 /**
 获取频道中，指定数量的消息
 
- @param channel 频道
-@param oldestClientSeq 截止的客户端编号
- @param limit 数量限制
- @return 消息实体结构
- */
-- (NSArray<LIMMessage*> *)getHistoryMessages:(LIMChannel*) channel oldestClientSeq:(uint32_t)oldestClientSeq  limit:(int)limit;
+// @param channel 频道
+//@param oldestMessageSeq 截止的消息序列号
+// @param limit 数量限制
+// @return 消息实体结构
+// */
+//- (NSArray<LIMMessage*> *)getHistoryMessages:(LIMChannel*) channel oldestMessageSeq:(uint32_t)oldestMessageSeq  limit:(int)limit;
+//
+//- (NSArray<LIMMessage*> *)getHistoryMessages:(LIMChannel*) channel oldestMessageSeq:(uint32_t)oldestMessageSeq contain:(BOOL)contain  limit:(int)limit reverse:(BOOL)reverse;
 
 
+
+/// 获取历史消息或同步历史消息（如果本地没有则同步）
+-(void) getOrSyncHistoryMessages:(LIMChannel*) channel oldestOrderSeq:(uint32_t)oldestOrderSeq contain:(BOOL)contain  limit:(int)limit reverse:(BOOL)reverse  complete:(void(^)(NSArray<LIMMessage*> *messages,NSError *error))complete;
 /**
  更新语音消息已读状态
  
@@ -195,6 +207,30 @@ NS_ASSUME_NONNULL_BEGIN
  @param message 消息对象
  */
 -(void) updateMessageExtra:(LIMMessage*)message;
+
+
+/// 撤回消息
+/// @param message <#message description#>
+-(void) revokeMessage:(LIMMessage*)message;
+
+
+
+/// 获取orderSeq
+/// @param messageSeq <#messageSeq description#>
+-(uint32_t) getOrderSeq:(uint32_t)messageSeq;
+
+
+/// 正文包装为消息
+/// @param content 消息正文
+/// @param channel 频道
+/// @param fromUid 发送者UID
+-(LIMMessage*) contentToMessage:(LIMMessageContent*)content channel:(LIMChannel*)channel fromUid:(NSString*)fromUid;
+
+
+
+/// 通过正文类型获取content
+/// @param contentType 正文类型
+-(LIMMessageContent*) getMessageContent:(NSInteger)contentType;
 
 /**
  添加连接委托
@@ -219,7 +255,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)callMessageUpdateDelegate:(LIMMessage*)message;
 
 
-
+/// 调用收到消息的委托
+/// @param messages <#messages description#>
+- (void)callRecvMessagesDelegate:(NSArray<LIMMessage*>*)messages;
 
 @end
 

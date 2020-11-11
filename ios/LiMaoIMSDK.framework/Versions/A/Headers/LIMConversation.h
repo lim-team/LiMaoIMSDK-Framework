@@ -91,71 +91,45 @@ typedef enum : NSUInteger {
  */
 @property(nullable,nonatomic,strong,readonly) LIMChannelInfo *channelInfo;
 /**
- 标题
- */
-@property(nonatomic,copy) NSString *title;
-/**
  头像
  */
 @property(nonatomic,copy) NSString *avatar;
-
 /**
  最新一条消息的客户端seq
  */
-@property(nonatomic,assign) uint32_t lastClientSeq;
-
-
-/// 最后一条消息message_seq
-@property(nonatomic,assign) uint32_t lastMsgSeq;
-
+//@property(nonatomic,assign) uint32_t lastClientSeq;
+/// 最后一条消息的客户端编号
+@property(nonatomic,copy) NSString *lastClientMsgNo;
 /**
  最后一条消息
  */
 @property(nonatomic,strong) LIMMessage *lastMessage;
-
-
-/// 重新加载最后一条消息（重新从数据库里获取）
--(void) reloadLastMessage;
-/**
- 最后一条消息的正文类型
- */
-@property(nonatomic,assign) NSInteger lastContentType;
-
 /**
  最新一条消息时间 （10位时间戳到秒）
  */
 @property(nonatomic,assign) NSInteger lastMsgTimestamp;
 
-/**
- 最近会话的内容
- */
-@property(nonatomic,copy) NSString *content;
-
-
+/// 已预览至的message_seq （这里注意是预览不是已读至）
+@property(nonatomic,assign) uint32_t browseTo;
 /**
  未读消息数量
  */
 @property(nonatomic,assign) NSInteger unreadCount;
-
-
 /**
  提醒管理
  */
 @property(nonatomic,strong) LIMReminderManager *reminderManager;
-
-
 /**
  扩展数据
  */
 @property(nonatomic,strong) NSDictionary *extra;
-
-
 /// 数据版本
-@property(nonatomic,assign) NSInteger version;
-
+@property(nonatomic,assign) long long version;
 // 是否已删除
 @property(nonatomic,assign) NSInteger isDeleted;
 
+/// 重新加载最后一条消息（重新从数据库里获取）
+-(void) reloadLastMessage;
 
 @end
 

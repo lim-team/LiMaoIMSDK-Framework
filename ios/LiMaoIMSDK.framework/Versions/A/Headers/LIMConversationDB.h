@@ -23,6 +23,11 @@ NS_ASSUME_NONNULL_BEGIN
 -(void) addOrUpdateConversation:(LIMConversation*)conversation;
 
 
+/// 取代最近会话
+/// @param conversations <#conversation description#>
+-(void) replaceConversations:(NSArray<LIMConversation*>*)conversations;
+
+
 /// 添加最近会话信息
 /// @param conversation <#conversation description#>
 -(void) addConversation:(LIMConversation*)conversation;
@@ -67,11 +72,19 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  通过最后一条消息的客户端序号获取最近会话
 
- @param lastClientSeq 最后一条消息的序号
+ @param lastClientMsgNo 最后一条消息的编号
  @return <#return value description#>
  */
--(LIMConversation*) getConversationWithLastClientSeq:(uint32_t)lastClientSeq;
+-(LIMConversation*) getConversationWithLastClientMsgNo:(NSString*)lastClientMsgNo;
 
+
+
+/// 获取会话最大数据版本号
+-(long long) getConversationMaxVersion;
+
+
+/// 获取同步key
+-(NSString*) getConversationSyncKey;
 /**
  更新最近会话
 
@@ -171,6 +184,12 @@ NS_ASSUME_NONNULL_BEGIN
  获取所有会话未读数量
  */
 -(NSInteger) getAllConversationUnreadCount;
+
+
+/// 更新频道预览的位置
+/// @param browseTo <#browseTo description#>
+/// @param channel <#channel description#>
+-(void) updateBrowseTo:(uint32_t)browseTo forChannel:(LIMChannel*)channel;
 
 @end
 

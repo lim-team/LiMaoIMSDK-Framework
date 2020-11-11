@@ -5,6 +5,8 @@
 //  Created by tt on 2019/11/25.
 //
 
+
+
 // 正文类型
 typedef enum : NSUInteger {
     LIM_TEXT = 1, // 文本消息
@@ -14,6 +16,8 @@ typedef enum : NSUInteger {
     LIM_CMD = 99, // 命令消息
     LIM_UNKNOWN = 0, // 未知消息
 } LIMContentType;
+
+
 
 // 消息状态
 typedef enum : NSUInteger {
@@ -57,3 +61,6 @@ typedef enum : NSUInteger {
     LIM_PROTO_MOS
 } LIMProto;
 
+
+// 排序序号因子
+#define LIMOrderSeqFactor 1000

@@ -12,10 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LIMSystemContent : LIMMessageContent
 
 @property(nonatomic,strong) NSDictionary *content;
+@property(nonatomic,copy) NSString *displayContent;
 
-
-/// 真实的正文类型
--(NSInteger) realContentType;
 @end
 
 NS_ASSUME_NONNULL_END

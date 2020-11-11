@@ -7,6 +7,8 @@
 
 #import <Foundation/Foundation.h>
 #import "LIMUserInfo.h"
+#import <fmdb/FMDB.h>
+@class LIMMessageContent;
 NS_ASSUME_NONNULL_BEGIN
 
 /*!
@@ -43,7 +45,8 @@ typedef NS_ENUM(NSUInteger, LIMMentionedType) {
  @return @提醒信息的对象
  */
 - (instancetype)initWithMentionedType:(LIMMentionedType)type
-                                 uids:(NSArray *)uids;
+                                 uids:(NSArray *__nullable)uids;
+
 
 /*!
  @提醒的类型
@@ -65,6 +68,21 @@ typedef NS_ENUM(NSUInteger, LIMMentionedType) {
 
 @end
 
+
+/// 回复
+@interface LIMReply : NSObject
+
+@property(nonatomic,copy) NSString *messageID; // 被回复的消息ID
+@property(nonatomic,assign) uint32_t messageSeq; // 被回复的消息seq
+
+@property(nonatomic,copy) NSString *fromUID; // 被回复消息的发送者
+@property(nonatomic,copy) NSString *fromName; // 被回复消息的发送者名称
+@property(nonatomic,copy) NSString *rootMessageID; // 根消息ID（可为空）
+
+@property(nonatomic,strong) LIMMessageContent *content; // 被回复的消息正文
+
+@end
+
 @class LIMMessage;
 @interface LIMMessageContent : NSObject
 
@@ -80,6 +98,10 @@ typedef NS_ENUM(NSUInteger, LIMMentionedType) {
  消息中的@提醒信息
  */
 @property (nonatomic, strong) LIMMentionedInfo *mentionedInfo;
+
+
+/// 回复消息
+@property(nonatomic,strong) LIMReply *reply;
 
 /*!
  将消息内容序列化，编码成为可传输的json数据
@@ -102,6 +124,9 @@ typedef NS_ENUM(NSUInteger, LIMMentionedType) {
  */
 - (void)decode:(NSData *)data;
 
+// TODO: 解码消息只供DB使用（为了兼容MOS的@消息，因为@消息有DB操作 如果直接调用DB会与外面的DB发生冲突）
+- (void)decode:(NSData *)data db:(FMDatabase*)db;
+
 // 上层无序实现decode 实现此方法即可
 -(void) decodeWithJSON:(NSDictionary*)contentDic;
 
@@ -111,6 +136,10 @@ typedef NS_ENUM(NSUInteger, LIMMentionedType) {
  @return 正文类型
  */
 +(NSInteger) contentType;
+
+
+/// 实际获取到的contentType （这种情况只会一个content对象被指定多个contentType的时候，可以通过这个属性获取到真实的contentType）
+@property(nonatomic,assign,readonly) NSInteger realContentType;
 
 /*!
  返回可搜索的关键内容列表
@@ -128,6 +157,10 @@ typedef NS_ENUM(NSUInteger, LIMMentionedType) {
  @return <#return value description#>
  */
 - (NSString *)conversationDigest;
+
+
+/// 消息正文字典
+@property(nonatomic,strong) NSDictionary *contentDict;
 
 /**
  扩展字段

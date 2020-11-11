@@ -42,6 +42,7 @@ create table channel_member
   member_remark varchar(100) NOT NULL default '',                             -- 成员备注
   version       bigint       NOT NULL default 0,                             -- 版本号
   role          INTEGER      NOT NULL default 0,                             -- 成员角色
+  status        smallint     NOT NULL default 0,                             -- 成员状态
   extra         text         not null default '',                             -- 扩展数据
   created_at    varchar(40)  NOT NULL default '', -- 创建时间
   updated_at    varchar(40)  NOT NULL default '',  -- 更新时间
@@ -57,6 +58,7 @@ create table message
   id           INTEGER PRIMARY KEY AUTOINCREMENT,
   message_id   UNSIGNED BIG INT not null default 0,                              -- 消息ID
   message_seq  UNSIGNED BIG INT not null default 0,                              -- 消息序列号(非严格递增)
+  order_seq    UNSIGNED BIG INT not null default 0,                              -- 消息排序号（消息越新序号越大）
   timestamp    integer          NOT NULL default 0,                              -- 服务器消息时间戳(10位，到秒)
   from_uid     VARCHAR(40)      not null default '',                             -- 发送者uid
   to_uid       VARCHAR(40)      not null default '',                             -- 接收者uid
@@ -65,13 +67,17 @@ create table message
   content_type integer          NOT NULL default 0,                              -- 消息正文类型
   content      text             not null default '',                             -- 消息正文
   status       integer          not null default 0,                              -- 消息状态
-  readed    smallint         not null default 0,                             --  消息是否已读 0.未读 1.已读
+  readed    smallint            not null default 0,                             --  消息是否已读 0.未读 1.已读
   voice_readed smallint         not null default 0,                             --  语音是否已读 0.未读 1.已读
   extra        text             not null default '',                             -- 扩展数据
+  revoke       smallint          not null default 0,                            -- 消息是否被撤回 0.否 1.是
+  is_deleted   smallint         not null default 0,                              -- 是否已删除 0.否 1.是
   created_at   timeStamp        not null DEFAULT (datetime('now', 'localtime')), -- 创建时间
   updated_at   timeStamp        not null DEFAULT (datetime('now', 'localtime'))  -- 更新时间
 );
 CREATE INDEX IF NOT EXISTS idx_message ON message (channel_id, channel_type);
+CREATE INDEX IF NOT EXISTS idx_order_seq ON message (order_seq);
+CREATE INDEX IF NOT EXISTS idx_content_type ON message (content_type);
 
 -- +migrate StatementBegin
 CREATE TRIGGER message_updated_at
@@ -88,15 +94,11 @@ create table conversation
   id                 INTEGER PRIMARY KEY AUTOINCREMENT,
   channel_id         VARCHAR(40)      not null default '',                             -- 频道ID
   channel_type       smallint         not null default 0,                              -- 频道类型
-  title              VARCHAR(100)     not null default '',                            -- 最近会话的标题
   avatar             VARCHAR(255)     not null default '',                            -- 最近会话的头像
-  last_client_seq    INTEGER          not null default 0,                              -- 最后一条消息client_seq
-  last_content_type  integer          not null default 0,                              --   最后一条消息正文类型
-  content   blob                      not null default '',                             -- 最后一条消息正文内容
+  last_client_msg_no VARCHAR(40)      not null default '',                    -- 最后一条消息client_msg_no
   last_msg_timestamp integer          not null default 0,                              -- 最后一条消息时间戳
-  stick              smallint         not null default 0,                              -- 是否置顶
-  mute               smallint         not null default 0,                              -- 免打扰
   unread_count       integer          not null default 0,                              -- 消息未读数量
+  browse_to          INTEGER          not null default 0,                              -- 已预览至的message_seq
   reminders          text             not null default '',                              -- 提醒集合 类似 [{type:1,text:@"有人@我",data:{}}]
   extra              text             not null default '',                             -- 扩展数据
   created_at         timeStamp        not null DEFAULT (datetime('now', 'localtime')), -- 创建时间

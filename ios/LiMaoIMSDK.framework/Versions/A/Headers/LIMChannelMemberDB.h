@@ -9,11 +9,19 @@
 #import "LIMChannel.h"
 NS_ASSUME_NONNULL_BEGIN
 
+// 成员角色
 typedef enum : NSUInteger {
-    LIMMemberRoleCommon,
-    LIMMemberRoleCreator,
-    LIMMemberRoleManager,
+    LIMMemberRoleCommon, // 普通成员
+    LIMMemberRoleCreator, // 创建者
+    LIMMemberRoleManager, // 管理员
 } LIMMemberRole;
+
+// 成员状态
+typedef enum : NSUInteger {
+    LIMMemberStatusUnknown,
+    LIMMemberStatusNormal, // 正常
+    LIMMemberStatusBlacklist, // 被拉入黑名单
+} LIMMemberStatus;
 
 @interface LIMChannelMember : NSObject
 
@@ -23,7 +31,9 @@ typedef enum : NSUInteger {
 @property(nonatomic,copy)    NSString *memberUid; // 成员uid
 @property(nonatomic,copy)    NSString *memberName; // 成员名称
 @property(nonatomic,copy)    NSString *memberRemark; // 成员备注
-@property(nonatomic,assign)   LIMMemberRole  role; // 成员角色
+@property(nonatomic,assign)  LIMMemberRole  role; // 成员角色
+@property(nonatomic,assign) LIMMemberStatus status; // 成员状态
+
 @property(nonatomic,strong) NSNumber *version; // 版本
 @property(nonatomic,strong) NSMutableDictionary *extra; // 扩展字段
 
@@ -67,6 +77,12 @@ typedef enum : NSUInteger {
  @return <#return value description#>
  */
 -(NSArray<LIMChannelMember*>*) getMembersWithChannel:(LIMChannel*)channel;
+
+-(NSArray<LIMChannelMember*>*) getMembersWithChannel:(LIMChannel*)channel role:(LIMMemberRole)role;
+
+/// 获取群内的黑名单成员
+/// @param channel <#channel description#>
+-(NSArray<LIMChannelMember*>*) getBlacklistMembersWithChannel:(LIMChannel*)channel;
 
 
 /// 获取管理员和创建者列表

@@ -35,6 +35,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign) uint64_t messageId;
 // 消息序列号（用户唯一，有序）
 @property(nonatomic,assign)  uint32_t messageSeq;
+
+// 消息排序号（消息越新序号越大）
+@property(nonatomic,assign) uint32_t orderSeq;
+
 // 消息时间（服务器时间,单位秒）
 @property(nonatomic,assign) NSInteger timestamp;
 // 本地消息创建时间
@@ -82,7 +86,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)isSend;
 
 // 本地扩展数据
-@property(nonatomic,copy) NSMutableDictionary *extra;
+@property(nonatomic,strong) NSMutableDictionary *extra;
+
+
+/// 消息是否被撤回
+@property(nonatomic,assign) BOOL revoke;
+
+/// 消息是否被删除
+@property(nonatomic,assign) BOOL isDeleted;
 
 @end
 

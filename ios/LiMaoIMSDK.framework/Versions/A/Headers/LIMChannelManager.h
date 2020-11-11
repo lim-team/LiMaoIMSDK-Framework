@@ -131,6 +131,12 @@ typedef void  (^LIMChannelInfoBlock)(LIMChannelInfo*);
 -(LIMChannelMember*) getMember:(LIMChannel*)channel uid:(NSString*)uid;
 
 
+
+/// 是否是管理员（群主或管理员）
+/// @param channel <#channel description#>
+/// @param uid <#uid description#>
+-(BOOL) isManager:(LIMChannel*)channel memberUID:(NSString*)uid;
+
 /**
  获取频道的成员最新同步key
  
@@ -138,6 +144,27 @@ typedef void  (^LIMChannelInfoBlock)(LIMChannelInfo*);
  @return <#return value description#>
  */
 -(NSString*) getMemberLastSyncKey:(LIMChannel*)channel;
+
+
+/// 设置频道在线
+/// @param channel <#channel description#>
+-(void) setChannelOnline:(LIMChannel*)channel;
+
+/// 设置频道离线
+/// @param channel <#channel description#>
+-(void) setChannelOffline:(LIMChannel*)channel;
+
+
+/// 只更新频道的在线状态
+/// @param online <#online description#>
+-(void) updateChannelOnlineStatus:(LIMChannel*)channel online:(BOOL)online;
+
+
+
+/// 设置频道离线
+/// @param channel 频道
+/// @param lastOffline 最后一次离线时间
+-(void) setChannelOffline:(LIMChannel*)channel lastOffline:(NSTimeInterval)lastOffline;
 
 /**
  设置频道缓存
