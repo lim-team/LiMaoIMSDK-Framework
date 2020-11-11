@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'LiMaoIMSDK'
-  s.version = '0.2.1'
+  s.version = '0.2.2'
   s.summary = '狸猫IM是一款简单，高效，支持完全私有化的即时通讯.'
   s.license = {"type"=>"MIT", "file"=>"ios/LICENSE"}
   s.authors = {"tangtaoit"=>"412145540@qq.com"}
@@ -13,6 +13,7 @@ Pod::Spec.new do |s|
   # s.source = { :git => "https://github.com/lim-team/LiMaoIMSDK-Framework.git",:tag => "#{s.version}" }
   s.source = { :git => "https://github.com/lim-team/LiMaoIMSDK-Framework.git",:tag => "#{s.version}" }
   s.requires_arc = true
+  s.platform = :ios, '9.0'
   s.ios.deployment_target    = '9.0'
   # s.resource_bundles = {
   #    'LiMaoIMSDK' => ['ios/Assets/*.png','ios/Assets/Migrations/*']
